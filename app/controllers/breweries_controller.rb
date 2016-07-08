@@ -1,10 +1,11 @@
 class BreweriesController < ApplicationController
+  before_action :set_user
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
 
   # GET /breweries
   # GET /breweries.json
   def index
-    @breweries = Brewery.all
+    @breweries = @user.breweries.all
   end
 
   # GET /breweries/1
@@ -14,7 +15,7 @@ class BreweriesController < ApplicationController
 
   # GET /breweries/new
   def new
-    @brewery = Brewery.new
+    @brewery = @user.breweries.new
   end
 
   # GET /breweries/1/edit
@@ -24,10 +25,11 @@ class BreweriesController < ApplicationController
   # POST /breweries
   # POST /breweries.json
   def create
-    @brewery = Brewery.new(brewery_params)
+    @brewery = @user.breweries.build(brewery_params)
 
     respond_to do |format|
       if @brewery.save
+        throw @brewery
         format.html { redirect_to @brewery, notice: 'Brewery was successfully created.' }
         format.json { render :show, status: :created, location: @brewery }
       else
@@ -41,6 +43,7 @@ class BreweriesController < ApplicationController
   # PATCH/PUT /breweries/1.json
   def update
     respond_to do |format|
+      throw @brewery
       if @brewery.update(brewery_params)
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
         format.json { render :show, status: :ok, location: @brewery }
@@ -62,13 +65,17 @@ class BreweriesController < ApplicationController
   end
 
   private
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_brewery
-      @brewery = Brewery.find(params[:id])
+      @brewery = @user.breweries.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def brewery_params
-      params.require(:brewery).permit(:brewery_name, :brewery_country, :brewery_location, :beer_count, :owner_id)
+      params.require(:brewery).permit(:brewery_name, :brewery_country, :brewery_location, :beer_count, :user_id)
     end
 end
