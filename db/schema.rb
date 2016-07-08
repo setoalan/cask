@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160708165303) do
     t.string   "brewery_country"
     t.string   "brewery_location"
     t.integer  "beer_count"
-    t.integer  "owner_id"
+    t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
