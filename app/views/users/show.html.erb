@@ -5,33 +5,5 @@
   <%= @user.email %>
 </p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Brewery name</th>
-      <th>Brewery country</th>
-      <th>Brewery location</th>
-      <th>Beer count</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user.breweries.each do |brewery| %>
-      <tr>
-        <td><%= brewery.brewery_name %></td>
-        <td><%= brewery.brewery_country %></td>
-        <td><%= brewery.brewery_location %></td>
-        <td><%= brewery.beer_count %></td>
-        <td><%= brewery.user_id %></td>
-        <td><%= link_to 'Show', [@user, brewery] %></td>
-        <td><%= link_to 'Edit', edit_user_brewery_path(@user, brewery) %></td>
-        <td><%= link_to 'Destroy', [@user, brewery], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
