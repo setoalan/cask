@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brewery name:</strong>
+  <%= @brewery.brewery_name %>
+</p>
+
+<p>
+  <strong>Brewery country:</strong>
+  <%= @brewery.brewery_country %>
+</p>
+
+<p>
+  <strong>Brewery location:</strong>
+  <%= @brewery.brewery_location %>
+</p>
+
+<p>
+  <strong>Beer count:</strong>
+  <%= @brewery.beer_count %>
+</p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @brewery.owner_id %>
+</p>
+
+<%= link_to 'Edit', edit_brewery_path(@brewery) %> |
+<%= link_to 'Back', breweries_path %>
