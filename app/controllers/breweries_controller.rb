@@ -29,8 +29,7 @@ class BreweriesController < ApplicationController
 
     respond_to do |format|
       if @brewery.save
-        throw @brewery
-        format.html { redirect_to @brewery, notice: 'Brewery was successfully created.' }
+        format.html { redirect_to [@user, @brewery], notice: 'Brewery was successfully created.' }
         format.json { render :show, status: :created, location: @brewery }
       else
         format.html { render :new }
@@ -43,9 +42,8 @@ class BreweriesController < ApplicationController
   # PATCH/PUT /breweries/1.json
   def update
     respond_to do |format|
-      throw @brewery
       if @brewery.update(brewery_params)
-        format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
+        format.html { redirect_to [@user, @brewery], notice: 'Brewery was successfully updated.' }
         format.json { render :show, status: :ok, location: @brewery }
       else
         format.html { render :edit }
