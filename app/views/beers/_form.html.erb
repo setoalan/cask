@@ -11,25 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :beer_name %><br>
-    <%= f.text_field :beer_name %>
+    <%= f.text_field :beer_name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :beer_abv %><br>
-    <%= f.number_field :beer_abv %>
+    <%= f.number_field :beer_abv, class: "form-control"  %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :beer_ibu %><br>
-    <%= f.number_field :beer_ibu %>
+    <%= f.number_field :beer_ibu, class: "form-control"  %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :beer_description %><br>
-    <%= f.text_field :beer_description %>
+    <%= f.text_field :beer_description, class: "form-control"  %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :beer_style %><br>
-    <%= f.text_field :beer_style %>
+    <%= f.text_field :beer_style, class: "form-control"  %>
   </div>
   <div class="actions">
     <%= f.submit %>
