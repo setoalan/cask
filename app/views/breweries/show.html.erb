@@ -23,5 +23,5 @@
   <%= @brewery.user_id %>
 </p>
 
-<%= link_to 'Edit', edit_user_brewery_path(@user, @brewery) %> |
-<%= link_to 'Back', user_breweries_path(@user) %>
+<%= link_to 'Edit', edit_user_brewery_path(@user, @brewery), class: "btn btn-default"  %>
+<%= link_to 'Back', user_breweries_path(@user), class: "btn btn-link"  %>
