@@ -1,10 +1,12 @@
 class BeersController < ApplicationController
+  before_action :set_user
+  before_action :set_brewery
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
 
   # GET /beers
   # GET /beers.json
   def index
-    @beers = Beer.all
+    @beers = @brewery.beers.all
   end
 
   # GET /beers/1
@@ -14,7 +16,7 @@ class BeersController < ApplicationController
 
   # GET /beers/new
   def new
-    @beer = Beer.new
+    @beer = @brewery.beers.new
   end
 
   # GET /beers/1/edit
@@ -24,11 +26,11 @@ class BeersController < ApplicationController
   # POST /beers
   # POST /beers.json
   def create
-    @beer = Beer.new(beer_params)
+    @beer = @brewery.beers.build(beer_params)
 
     respond_to do |format|
       if @beer.save
-        format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
+        format.html { redirect_to [@user, @brewery, @beer], notice: 'Beer was successfully created.' }
         format.json { render :show, status: :created, location: @beer }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class BeersController < ApplicationController
   def update
     respond_to do |format|
       if @beer.update(beer_params)
-        format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
+        format.html { redirect_to [@user, @brewery, @beer], notice: 'Beer was successfully updated.' }
         format.json { render :show, status: :ok, location: @beer }
       else
         format.html { render :edit }
@@ -56,15 +58,23 @@ class BeersController < ApplicationController
   def destroy
     @beer.destroy
     respond_to do |format|
-      format.html { redirect_to beers_url, notice: 'Beer was successfully destroyed.' }
+      format.html { redirect_to @brewery, notice: 'Beer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
+    def set_brewery
+      @brewery = @user.breweries.find(params[:brewery_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_beer
-      @beer = Beer.find(params[:id])
+      @beer = @brewery.beers.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -30,5 +30,5 @@
   <%= @beer.brewery_id %>
 </p>
 
-<%= link_to 'Edit', edit_beer_path(@beer) %> |
-<%= link_to 'Back', beers_path %>
+<%= link_to 'Edit', edit_user_brewery_beer_path(@user, @brewery, @beer) %> |
+<%= link_to 'Back', user_brewery_beers_path(@user, @brewery) %>
