@@ -25,7 +25,7 @@ class BreweriesController < ApplicationController
   # POST /breweries
   # POST /breweries.json
   def create
-    @brewery = @user.breweries.build(brewery_params)
+    @brewery = @user.breweries.new(brewery_params)
 
     respond_to do |format|
       if @brewery.save
@@ -57,7 +57,7 @@ class BreweriesController < ApplicationController
   def destroy
     @brewery.destroy
     respond_to do |format|
-      format.html { redirect_to breweries_url, notice: 'Brewery was successfully destroyed.' }
+      format.html { redirect_to [@user, @brewery], notice: 'Brewery was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
