@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Breweries</h1>
 
-<table>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Brewery name</th>
@@ -31,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Brewery', new_user_brewery_path(@user) %>
+<%= link_to 'New Brewery', new_user_brewery_path(@user), class: "btn btn-link" %>
