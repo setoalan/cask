@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Generate Users
-User.create(email: 'admin@cask.com', password: 'password', password_confirmation: 'password')
+User.create(email: 'admin@cask.com', password: 'password', password_confirmation: 'password', role: 'admin')
 User.create(email: 'user2@cask.com', password: 'password', password_confirmation: 'password')
 User.create(email: 'user3@cask.com', password: 'password', password_confirmation: 'password')
 User.create(email: 'user4@cask.com', password: 'password', password_confirmation: 'password')
