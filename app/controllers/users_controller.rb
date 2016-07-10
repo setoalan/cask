@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :check_signed_in
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -57,6 +58,12 @@ class UsersController < ApplicationController
   end
 
   private
+    def check_signed_in
+      unless user_signed_in?
+        redirect_to new_user_session_path , notice: "Please sign in."
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
