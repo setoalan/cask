@@ -15,7 +15,7 @@
   <tbody>
     <% @breweries.each do |brewery| %>
       <tr>
-        <td><%= brewery.brewery_name %></td>
+        <td><%= link_to brewery.brewery_name, user_brewery_beers_path(@user, brewery) %></td>
         <td><%= brewery.brewery_country %></td>
         <td><%= brewery.brewery_location %></td>
         <td><%= brewery.beer_count %></td>
