@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   private
     def validate_user
       if @user != current_user && current_user.role != 'admin'
-        redirect_to root_path, alert: 'Access denieds.'
+        redirect_to root_path, alert: 'Access denied.'
       end
     end
 
@@ -68,6 +68,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email)
+      params.require(:user).permit(:email, :name)
     end
 end
