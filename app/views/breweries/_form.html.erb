@@ -12,21 +12,19 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :brewery_name %><br>
+    <%= f.label :brewery_name %>*<br>
     <%= f.text_field :brewery_name, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :brewery_country %><br>
+    <%= f.label :brewery_country %>*<br>
     <%= f.text_field :brewery_country, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :brewery_location %><br>
+    <%= f.label :brewery_location %>*
+    <em>(city, state)</em><br>
     <%= f.text_field :brewery_location, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= f.label :beer_count %><br>
-    <%= f.number_field :beer_count, class: "form-control" %>
-  </div>
+  <p>* <em>required</em></p>
   <div class="actions">
     <%= f.submit %>
   </div>
