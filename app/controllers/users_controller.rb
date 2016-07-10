@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :check_signed_in
+  before_action :authenticate_user!
   before_action :check_current_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -66,12 +66,6 @@ class UsersController < ApplicationController
     def check_current_user
       if current_user.role != 'admin' && current_user.id.to_s != params[:id]
         redirect_to root_path, notice: 'Unauthorized.'
-      end
-    end
-
-    def check_signed_in
-      unless user_signed_in?
-        redirect_to new_user_session_path , notice: "Please sign in."
       end
     end
 
