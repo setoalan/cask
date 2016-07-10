@@ -20,7 +20,7 @@ Brewery.create(brewery_name: 'brewery4', brewery_country: 'USA', brewery_locatio
 Brewery.create(brewery_name: 'brewery5', brewery_country: 'USA', brewery_location: 'Chicago', beer_count: 0, user_id: 5)
 
 # Generate Beers
-Beer.create(beer_name: 'beer2', beer_abv: 100, beer_ibu: 100, beer_description: 'beer2 description', beer_style: 'Ale', brewery_id: 2)
-Beer.create(beer_name: 'beer3', beer_abv: 100, beer_ibu: 100, beer_description: 'beer3 description', beer_style: 'Ale', brewery_id: 3)
-Beer.create(beer_name: 'beer4', beer_abv: 100, beer_ibu: 100, beer_description: 'beer4 description', beer_style: 'Ale', brewery_id: 4)
-Beer.create(beer_name: 'beer5', beer_abv: 100, beer_ibu: 100, beer_description: 'beer5 description', beer_style: 'Ale', brewery_id: 5)
+Beer.create(beer_name: 'beer2', beer_abv: 100, beer_ibu: 100, beer_description: 'beer2 description', beer_style: 'Ale', brewery_id: 1)
+Beer.create(beer_name: 'beer3', beer_abv: 100, beer_ibu: 100, beer_description: 'beer3 description', beer_style: 'Ale', brewery_id: 2)
+Beer.create(beer_name: 'beer4', beer_abv: 100, beer_ibu: 100, beer_description: 'beer4 description', beer_style: 'Ale', brewery_id: 3)
+Beer.create(beer_name: 'beer5', beer_abv: 100, beer_ibu: 100, beer_description: 'beer5 description', beer_style: 'Ale', brewery_id: 4)

@@ -1,3 +1,6 @@
+<% unless user_signed_in? %>
+  <% controller.redirect_to new_user_session_path , notice: "Please sign in." %>
+<% end %>
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
