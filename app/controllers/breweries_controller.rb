@@ -1,5 +1,6 @@
 class BreweriesController < ApplicationController
   before_action :check_signed_in
+  before_action :check_current_user
   before_action :set_user
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
 
@@ -64,6 +65,12 @@ class BreweriesController < ApplicationController
   end
 
   private
+    def check_current_user
+      if current_user.id.to_s != params[:user_id]
+        redirect_to root_path, notice: 'Unauthorized.'
+      end
+    end
+
     def check_signed_in
       unless user_signed_in?
         redirect_to new_user_session_path , notice: "Please sign in."
