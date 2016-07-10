@@ -1,7 +1,7 @@
 class BeersController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_current_user
   before_action :set_user
+  before_action :validate_user
   before_action :set_brewery
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
 
@@ -66,9 +66,9 @@ class BeersController < ApplicationController
   end
 
   private
-    def check_current_user
-      if current_user.role != 'admin' && current_user.id.to_s != params[:user_id]
-        redirect_to root_path, notice: 'Unauthorized.'
+    def validate_user
+      if @user != current_user && current_user.role != 'admin'
+        redirect_to root_path, alert: 'Access denied.'
       end
     end
 

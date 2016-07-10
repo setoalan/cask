@@ -1,16 +1,12 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_current_user
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :validate_user
 
   # GET /users
   # GET /users.json
   def index
-    if current_user.role == 'admin'
-      @users = User.all
-    else
-      redirect_to root_path, notice: 'Unauthorized.'
-    end
+    @users = User.all
   end
 
   # GET /users/1
@@ -63,9 +59,9 @@ class UsersController < ApplicationController
   end
 
   private
-    def check_current_user
-      if current_user.role != 'admin' && current_user.id.to_s != params[:id]
-        redirect_to root_path, notice: 'Unauthorized.'
+    def validate_user
+      if @user != current_user && current_user.role != 'admin'
+        redirect_to root_path, alert: 'Access denieds.'
       end
     end
 
