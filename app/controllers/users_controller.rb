@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include UsersHelper
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :validate_user
@@ -55,12 +56,6 @@ class UsersController < ApplicationController
   end
 
   private
-    def validate_user
-      if @user != current_user && current_user.role != 'admin'
-        redirect_to root_path, alert: 'Access denied.'
-      end
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
