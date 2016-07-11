@@ -22,7 +22,7 @@
         <td><%= beer.beer_description %></td>
         <td><%= beer.beer_style %></td>
         <td><%= beer.brewery_id %></td>
-        <td><%= link_to 'Show', [@user, @brewery, beer] %></td>
+        <td><%= link_to 'Show', user_brewery_beers_path(@user, @brewery, beer) %></td>
         <td><%= link_to 'Edit', edit_user_brewery_beer_path(@user, @brewery, beer) %></td>
         <td><%= link_to 'Destroy', [@user, @brewery, beer], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
