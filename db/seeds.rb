@@ -14,13 +14,15 @@ User.create(email: 'user4@cask.com', name: 'user4', password: 'asdfjkl;', passwo
 User.create(email: 'user5@cask.com', name: 'user5', password: 'asdfjkl;', password_confirmation: 'asdfjkl;')
 
 # Generate Breweries
+Brewery.create(brewery_name: 'brewery1', brewery_country: 'USA', brewery_location: 'Chicago', user_id: 1)
 Brewery.create(brewery_name: 'brewery2', brewery_country: 'USA', brewery_location: 'Chicago', user_id: 2)
 Brewery.create(brewery_name: 'brewery3', brewery_country: 'USA', brewery_location: 'Chicago', user_id: 3)
 Brewery.create(brewery_name: 'brewery4', brewery_country: 'USA', brewery_location: 'Chicago', user_id: 4)
 Brewery.create(brewery_name: 'brewery5', brewery_country: 'USA', brewery_location: 'Chicago', user_id: 5)
 
 # Generate Beers
-Beer.create(beer_name: 'beer2', beer_abv: 100, beer_ibu: 100, beer_description: 'beer2 description', beer_style: 'Ale', brewery_id: 1)
-Beer.create(beer_name: 'beer3', beer_abv: 100, beer_ibu: 100, beer_description: 'beer3 description', beer_style: 'Ale', brewery_id: 2)
-Beer.create(beer_name: 'beer4', beer_abv: 100, beer_ibu: 100, beer_description: 'beer4 description', beer_style: 'Ale', brewery_id: 3)
-Beer.create(beer_name: 'beer5', beer_abv: 100, beer_ibu: 100, beer_description: 'beer5 description', beer_style: 'Ale', brewery_id: 4)
+Beer.create(beer_name: 'beer1', beer_abv: 100, beer_ibu: 100, beer_description: 'beer1 description', beer_style: 'Ale', brewery_id: 1)
+Beer.create(beer_name: 'beer2', beer_abv: 100, beer_ibu: 100, beer_description: 'beer2 description', beer_style: 'Ale', brewery_id: 2)
+Beer.create(beer_name: 'beer3', beer_abv: 100, beer_ibu: 100, beer_description: 'beer3 description', beer_style: 'Ale', brewery_id: 3)
+Beer.create(beer_name: 'beer4', beer_abv: 100, beer_ibu: 100, beer_description: 'beer4 description', beer_style: 'Ale', brewery_id: 4)
+Beer.create(beer_name: 'beer5', beer_abv: 100, beer_ibu: 100, beer_description: 'beer5 description', beer_style: 'Ale', brewery_id: 5)
