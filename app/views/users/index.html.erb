@@ -11,7 +11,7 @@
 
   <tbody>
     <% @users.each do |user| %>
-    <% if user.role == 'admin'%><% next %><% end %>
+    <% if user.role == 'admin' %><% next %><% end %>
       <tr>
         <td><%= link_to user.name, user_breweries_path(user) %></td>
         <td><%= user.email %></td>

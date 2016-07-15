@@ -8,7 +8,11 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
   def index
-    @breweries = @user.breweries.all
+    if @user
+      @breweries = @user.breweries.all
+    else
+      @breweries = Brewery.all
+    end
   end
 
   # GET /breweries/1
@@ -67,12 +71,18 @@ class BreweriesController < ApplicationController
 
   private
     def set_user
-      @user = User.find(params[:user_id])
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+      end
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_brewery
-      @brewery = @user.breweries.find(params[:id])
+      if params[:user_id]
+        @brewery = @user.breweries.find(params[:id])
+      else
+        @brewery = Brewery.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
