@@ -17,11 +17,8 @@
   <tbody>
     <% @breweries.each do |brewery| %>
       <tr>
-        <% if @user %>
-          <td><%= link_to brewery.brewery_name, user_brewery_beers_path(@user, brewery) %></td>
-        <% else %>
-          <td><%= link_to brewery.brewery_name, brewery_path(brewery) %></td>
-        <% end %>
+        <td><%= link_to brewery.brewery_name, user_brewery_beers_path(@user, brewery) if @user %></td>
+        <td><%= link_to brewery.brewery_name, brewery_path(brewery) unless @user %></td>
         <td><%= brewery.brewery_country %></td>
         <td><%= brewery.brewery_location %></td>
         <td><%= brewery.beer_count %></td>
@@ -36,6 +33,4 @@
 </table>
 
 <br>
-<% if @user %>
-  <%= link_to 'New Brewery', new_user_brewery_path(@user), class: "btn btn-link" %>
-<% end %>
+<%= link_to 'New Brewery', new_user_brewery_path(@user), class: "btn btn-link" if user %>
