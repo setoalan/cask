@@ -9,7 +9,11 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = @brewery.reservations.all
+    if params[:user_id] && params[:brewery_id]
+      @reservations = @brewery.reservations.all
+    else
+      @reservations = @user.reservations.all
+    end
   end
 
   # GET /reservations/1
@@ -19,7 +23,9 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
-    @reservation = @brewery.reservations.new
+    if params[:brewery_id]
+      @reservation = @brewery.reservations.new
+    end
   end
 
   # GET /reservations/1/edit
@@ -29,11 +35,11 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = @brewery.reservations.new(reservation_params)
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to [@user, @brewery, @reservation], notice: 'Reservation was successfully created.' }
+        format.html { redirect_to breweries_path, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else
         format.html { render :new }
@@ -74,16 +80,20 @@ class ReservationsController < ApplicationController
     end
 
     def set_brewery
-      if params[:user_id]
+      if params[:user_id] && params[:brewery_id]
         @brewery = @user.breweries.find(params[:brewery_id])
-      else
+      elsif params[:brewery_id]
         @brewery = Brewery.find(params[:brewery_id])
       end
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
-      @reservation = Reservation.find(params[:id])
+      if params[:user_id] && params[:brewery_id]
+        @reservation = @brewery.reservations.find(params[:id])
+      else
+        @reservation = @user.reservations.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

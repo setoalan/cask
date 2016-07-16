@@ -8,8 +8,10 @@
       <th>Message</th>
       <th>User</th>
       <th>Brewery</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <% if @user %>
+        <th>Edit</th>
+        <th>Delete</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -21,8 +23,13 @@
         <td><%= reservation.message %></td>
         <td><%= reservation.user_id %></td>
         <td><%= reservation.brewery_id %></td>
-        <td><%= link_to 'Edit', edit_user_brewery_reservation_path(@user, @brewery, reservation) %></td>
-        <td><%= link_to 'Destroy', [@user, @brewery, reservation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @user && @brewery %>
+          <td><%= link_to 'Edit', edit_user_brewery_reservation_path(@user, @brewery, reservation) %></td>
+          <td><%= link_to 'Destroy', [@user, @brewery, reservation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% elsif @user %>
+          <td><%= link_to 'Edit', edit_user_reservation_path(@user, reservation) %></td>
+          <td><%= link_to 'Destroy', [@user, reservation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +37,5 @@
 
 <br>
 
-<%= link_to 'New Reservation', new_user_brewery_reservation_path(@user, @brewery), class: 'btn btn-link' %>
+<%= link_to 'New Reservation', new_user_brewery_reservation_path(@user, @brewery), class: 'btn btn-link' if @user && @brewery %>
+<%= link_to 'New Reservation', new_brewery_reservation_path( @brewery), class: 'btn btn-link' unless @user %>

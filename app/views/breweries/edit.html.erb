@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [@user, @brewery], class: "btn btn-default" %>
-<%= link_to 'Back', user_breweries_path(@user), class: "btn btn-link" %>
+<%= link_to 'Show', [@user, @brewery], class: 'btn btn-default' if @user %>
+<%= link_to 'Back', user_breweries_path(@user), class: 'btn btn-link' if @user %>

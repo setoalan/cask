@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [@user, @brewery, @reservation], class: 'btn btn-primary' %>
-<%= link_to 'Back', user_brewery_reservations_path(@user, @brewery), class: 'btn btn-link' %>
+<%= link_to 'Show', [@user, @brewery, @reservation], class: 'btn btn-primary' if @user %>
+<%= link_to 'Back', user_brewery_reservations_path(@user, @brewery), class: 'btn btn-link' if @user %>

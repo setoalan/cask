@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <%= f.label :email %><br>
-    <%= f.text_field :email, class: "form-control", value: @user.email %>
+    <%= f.text_field :email, class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :request_date_time %><br>
@@ -23,8 +23,8 @@
     <%= f.label :message %><br>
     <%= f.text_area :message, class: "form-control" %>
   </div>
-  <%= f.hidden_field :brewery_id, class: "form-control", value: @brewery.id %>
-  <%= f.hidden_field :user_id, class: "form-control", value: @user.id %>
+  <%= f.hidden_field :brewery_id, class: "form-control", value: @reservation.brewery_id %>
+  <%= f.hidden_field :user_id, class: "form-control", value: current_user.id %>
   <div class="actions">
     <%= f.submit %>
   </div>

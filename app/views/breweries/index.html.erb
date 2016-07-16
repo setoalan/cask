@@ -9,7 +9,7 @@
       <th>Beer count</th>
       <th>Owner</th>
       <th>Display Beers</th>
-      <th>Display Reservations</th>
+      <th>Reservations</th>
       <% if @user %>
         <th>Edit</th>
         <th>Destroy</th>
@@ -37,7 +37,7 @@
           <td><%= link_to 'Destroy', [@user, brewery], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% else %>
           <td><%= link_to 'Display Beers', brewery_beers_path(brewery) %></td>
-          <td><%= link_to 'Display Reservations', user_brewery_reservations_path(@user, brewery) %></td>
+          <td><%= link_to 'Make Reservations', new_brewery_reservation_path(brewery) %></td>
         <% end %>
     <% end %>
   </tbody>

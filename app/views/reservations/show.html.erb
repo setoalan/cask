@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Email:</strong>
   <%= @reservation.email %>
@@ -25,5 +23,7 @@
   <%= @reservation.brewery_id %>
 </p>
 
-<%= link_to 'Edit', edit_user_brewery_reservation_path(@user, @brewery, @reservation), class: 'btn btn-primary' %>
-<%= link_to 'Back', user_brewery_reservations_path(@user, @brewery), class: 'btn btn-link' %>
+<%= link_to 'Edit', edit_user_brewery_reservation_path(@user, @brewery, @reservation), class: 'btn btn-primary' if @user %>
+<%= link_to 'Back', user_brewery_reservations_path(@user, @brewery), class: 'btn btn-link' if @user %>
+<%= link_to 'Edit', edit_brewery_reservation_path(@brewery, @reservation), class: 'btn btn-primary' unless @user %>
+<%= link_to 'Back', brewery_reservations_path(@brewery), class: 'btn btn-link' unless @user %>
