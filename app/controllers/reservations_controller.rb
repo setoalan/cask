@@ -9,7 +9,7 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    if params[:user_id] && params[:brewery_id]
+    if params[:brewery_id]
       @reservations = @brewery.reservations.all
     else
       @reservations = @user.reservations.all
@@ -23,9 +23,7 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/new
   def new
-    if params[:brewery_id]
-      @reservation = @brewery.reservations.new
-    end
+    @reservation = @brewery.reservations.new
   end
 
   # GET /reservations/1/edit
