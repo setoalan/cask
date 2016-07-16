@@ -9,22 +9,30 @@
       <th>Beer description</th>
       <th>Beer style</th>
       <th>Brewery</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <% if @user %>
+        <th>Edit</th>
+        <th>Destroy</th>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @beers.each do |beer| %>
       <tr>
-        <td><%= link_to beer.beer_name, user_brewery_beer_path(@user, @brewery, beer) %></td>
+        <% if @user %>
+          <td><%= link_to beer.beer_name, user_brewery_beer_path(@user, @brewery, beer) %></td>
+        <% else %>
+          <td><%= link_to beer.beer_name, brewery_beer_path(@brewery, beer) %></td>
+        <% end %>
         <td><%= beer.beer_abv %></td>
         <td><%= beer.beer_ibu %></td>
         <td><%= beer.beer_description %></td>
         <td><%= beer.beer_style %></td>
         <td><%= beer.brewery_id %></td>
-        <td><%= link_to 'Edit', edit_user_brewery_beer_path(@user, @brewery, beer) %></td>
-        <td><%= link_to 'Destroy', [@user, @brewery, beer], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @user %>
+          <td><%= link_to 'Edit', edit_user_brewery_beer_path(@user, @brewery, beer) %></td>
+          <td><%= link_to 'Destroy', [@user, @brewery, beer], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Beer', new_user_brewery_beer_path(@user, @brewery) %>
+<%= link_to 'New Beer', new_user_brewery_beer_path(@user, @brewery) if @user %>
