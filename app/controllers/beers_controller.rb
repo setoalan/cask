@@ -68,11 +68,17 @@ class BeersController < ApplicationController
 
   private
     def set_user
-      @user = User.find(params[:user_id])
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+      end
     end
 
     def set_brewery
-      @brewery = @user.breweries.find(params[:brewery_id])
+      if params[:user_id]
+        @brewery = @user.breweries.find(params[:brewery_id])
+      else
+        @brewery = Brewery.find(params[:brewery_id])
+      end
     end
 
     # Use callbacks to share common setup or constraints between actions.
