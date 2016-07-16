@@ -4,4 +4,5 @@ class Brewery < ActiveRecord::Base
   validates :brewery_location, presence: true
   belongs_to :user
   has_many :beers
+  has_many :reservations
 end

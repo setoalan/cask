@@ -3,10 +3,13 @@ Rails.application.routes.draw do
   resources :users do
     resources :breweries do
       resources :beers
+      resources :reservations
     end
+    resources :reservations
   end
   resources :breweries do
     resources :beers
+    resources :reservations
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
