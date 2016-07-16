@@ -83,6 +83,8 @@ class BreweriesController < ApplicationController
       else
         @brewery = Brewery.find(params[:id])
       end
+    rescue
+      redirect_to root_path, alert: 'Brewery not found.'
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

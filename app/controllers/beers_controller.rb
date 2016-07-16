@@ -79,11 +79,15 @@ class BeersController < ApplicationController
       else
         @brewery = Brewery.find(params[:brewery_id])
       end
+    rescue
+      redirect_to root_path, alert: 'Brewery not found.'
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_beer
       @beer = @brewery.beers.find(params[:id])
+    rescue
+      redirect_to root_path, alert: 'Beer not found.'
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -7,7 +7,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if current_user.role == 'admin'
+      @users = User.all
+    else
+      redirect_to root_path, notice: 'Access denied.'
+    end
   end
 
   # GET /users/1
@@ -59,6 +63,8 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    rescue
+      redirect_to root_url, alert: 'User not found.'
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

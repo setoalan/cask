@@ -83,6 +83,8 @@ class ReservationsController < ApplicationController
       elsif params[:brewery_id]
         @brewery = Brewery.find(params[:brewery_id])
       end
+    rescue
+      redirect_to root_path, alert: 'Brewery not found.'
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -92,6 +94,8 @@ class ReservationsController < ApplicationController
       else
         @reservation = @user.reservations.find(params[:id])
       end
+    rescue
+      redirect_to root_path, alert: 'Reservation not found.'
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
