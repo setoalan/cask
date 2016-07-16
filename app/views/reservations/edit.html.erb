@@ -1,0 +1,8 @@
+<h1>Editing Reservation</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', user_brewery_reservation_path(@user, @brewery, @reservation), class: 'btn btn-primary' if @brewery %>
+<%= link_to 'Back', user_brewery_reservations_path(@user, @brewery), class: 'btn btn-link' if @brewery %>
+<%= link_to 'Show', user_reservation_path(@user, @reservation), class: 'btn btn-primary' unless @brewery %>
+<%= link_to 'Back', user_reservations_path(@user), class: 'btn btn-link' unless @brewery %>
