@@ -1,6 +1,6 @@
 <h1>Listing Beers</h1>
 
-<table class="table table-striped table-hover">
+<table class='table table-striped table-hover'>
   <thead>
     <tr>
       <th>Beer name</th>
@@ -9,20 +9,20 @@
       <th>Beer description</th>
       <th>Beer style</th>
       <th>Brewery</th>
-      <th colspan="3"></th>
+      <th>Edit</th>
+      <th>Destroy</th>
     </tr>
   </thead>
 
   <tbody>
     <% @beers.each do |beer| %>
       <tr>
-        <td><%= beer.beer_name %></td>
+        <td><%= link_to beer.beer_name, user_brewery_beer_path(@user, @brewery, beer) %></td>
         <td><%= beer.beer_abv %></td>
         <td><%= beer.beer_ibu %></td>
         <td><%= beer.beer_description %></td>
         <td><%= beer.beer_style %></td>
         <td><%= beer.brewery_id %></td>
-        <td><%= link_to 'Show', user_brewery_beers_path(@user, @brewery, beer) %></td>
         <td><%= link_to 'Edit', edit_user_brewery_beer_path(@user, @brewery, beer) %></td>
         <td><%= link_to 'Destroy', [@user, @brewery, beer], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
