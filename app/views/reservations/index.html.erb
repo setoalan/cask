@@ -37,5 +37,4 @@
 
 <br>
 
-<%= link_to 'New Reservation', new_user_brewery_reservation_path(@user, @brewery), class: 'btn btn-link' if @user && @brewery %>
 <%= link_to 'New Reservation', new_brewery_reservation_path( @brewery), class: 'btn btn-link' unless @user %>

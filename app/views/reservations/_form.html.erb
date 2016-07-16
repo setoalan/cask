@@ -24,7 +24,7 @@
     <%= f.text_area :message, class: "form-control" %>
   </div>
   <%= f.hidden_field :brewery_id, class: "form-control", value: @reservation.brewery_id %>
-  <%= f.hidden_field :user_id, class: "form-control", value: current_user.id %>
+  <%= f.hidden_field :user_id, class: "form-control", value: @reservation.user_id ? @reservation.user_id : current_user.id %>
   <div class="actions">
     <%= f.submit %>
   </div>

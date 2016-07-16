@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [@user, @brewery, @reservation], class: 'btn btn-primary' if @user %>
-<%= link_to 'Back', user_brewery_reservations_path(@user, @brewery), class: 'btn btn-link' if @user %>
+<%= link_to 'Show', [@user, @brewery, @reservation], class: 'btn btn-primary' if @user && @brewery %>
+<%= link_to 'Back', user_brewery_reservations_path(@user, @brewery), class: 'btn btn-link' if @user && @brewery %>
+<%= link_to 'Show', [@user, @reservation], class: 'btn btn-primary' if @user && !@brewery %>
+<%= link_to 'Back', user_reservations_path(@user), class: 'btn btn-link' if @user && !@brewery %>
