@@ -37,8 +37,9 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to breweries_path, notice: 'Reservation was successfully created.' }
+        format.html { notification }
         format.json { render :show, status: :created, location: @reservation }
+
       else
         format.html { render :new }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
@@ -68,6 +69,12 @@ class ReservationsController < ApplicationController
       format.html { redirect_to [@user, @brewery, @reservation], notice: 'Reservation was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def notification
+    ReservationMailer.reservation_email(@reservation).deliver_now
+    flash[:notice] = 'Reservation was successfully created.'
+    redirect_to breweries_path
   end
 
   private

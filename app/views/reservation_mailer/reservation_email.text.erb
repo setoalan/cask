@@ -1,0 +1,12 @@
+There has been a reservation made at the following brewery:
+
+<%= Brewery.find(@reservation.brewery_id).brewery_name %>
+
+The visitor's details:
+
+Email: <%= @reservation.email %><br>
+Message: <%= @reservation.message %>
+
+On:
+
+<%= @reservation.request_date_time %>
