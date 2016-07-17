@@ -13,7 +13,7 @@
 
   <div class='form-group'>
     <%= f.label :email %><br>
-    <%= f.text_field :email, class: 'form-control' %>
+    <%= f.text_field :email, class: 'form-control', autofocus: true,  value: @reservation.email ? @reservation.email : current_user.email %>
   </div>
   <div class='field'>
     <%= f.label :request_date_time %><br>
