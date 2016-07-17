@@ -4,7 +4,11 @@
   </head>
   <body>
     <p>
-      There has been a reservation made at the following brewery:
+      <% if @is_new %>
+        There is a new reservation made at the following brewery:
+      <% else %>
+        There is an update to a reservation at the following brewery:
+      <% end %>
     </p>
     <p>
       <%= Brewery.find(@reservation.brewery_id).brewery_name %>
