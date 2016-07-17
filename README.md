@@ -1,29 +1,70 @@
 # Cask
 
-## User
+This is the sample application for the Web Development track at [Startup Institute](http://startupinstitute.com/).
 
-user_id
-email
-user_name
-first_name
-last_name
-location
+## Getting Started
 
-## Beer
+Cask is a content management system for beer enthusiasts where they can manage their breweries and their respective beers lists. In addition, users will be able to manage reservations and also make reservations at other breweries.
 
-beer_id
-beer_name
-beer_abv
-beer_ibu
-beer_description
-beer_style
-brewery_id
+### Installing
 
-## Brewery
+To get started with the app, clone the repo and then install the needed gems:
 
-brewery_id
-brewery_name
-brewery_country
-brewery_location
-brewery_count
-owner_id
+```
+$ bundle install --without production
+```
+
+Next, migrate the database:
+
+```
+$ rails db:migrate
+```
+
+Finally, run the app in a local server:
+
+```
+$ rails server
+```
+
+## Schema
+
+| User     |         |
+|----------|---------|
+| user_id  | integer |
+| name     | string  |
+| email    | string  |
+| password | string  |
+
+| Brewery          |         |
+|------------------|---------|
+| brewery_id       | integer |
+| brewery_name     | string  |
+| brewery_country  | string  |
+| brewery_location | string  |
+| beer_count       | integer |
+| user_id          | integer |
+
+| Beer             |         |
+|------------------|---------|
+| beer_id          | integer |
+| beer_name        | string  |
+| beer_abv         | integer |
+| beer_ibu         | integer |
+| beer_description | text    |
+| beer_style       | text    |
+| brewery_id       | integer |
+
+| Reservation       |          |
+|-------------------|----------|
+| reservation_id    | integer  |
+| email             | string   |
+| request_date_time | datetime |
+| message           | text     |
+| user_id           | integer  |
+| brewery_id        | integer  |
+
+## License
+
+MIT License
+
+Copyright (c) 2016 Alan Seto

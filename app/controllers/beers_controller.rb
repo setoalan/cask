@@ -33,7 +33,7 @@ class BeersController < ApplicationController
 
     respond_to do |format|
       if @beer.save
-        format.html { redirect_to [@user, @brewery, @beer], notice: 'Beer was successfully created.' }
+        format.html { redirect_to user_brewery_beers_path(@user, @brewery), notice: 'Beer was successfully created.' }
         format.json { render :show, status: :created, location: @beer }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class BeersController < ApplicationController
   def update
     respond_to do |format|
       if @beer.update(beer_params)
-        format.html { redirect_to [@user, @brewery, @beer], notice: 'Beer was successfully updated.' }
+        format.html { redirect_to user_brewery_beer_path(@user, @brewery, @beer), notice: 'Beer was successfully updated.' }
         format.json { render :show, status: :ok, location: @beer }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class BeersController < ApplicationController
   def destroy
     @beer.destroy
     respond_to do |format|
-      format.html { redirect_to [@user, @brewery, @beer], notice: 'Beer was successfully destroyed.' }
+      format.html { redirect_to user_brewery_beers_path(@user, @brewery), notice: 'Beer was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -79,11 +79,15 @@ class BeersController < ApplicationController
       else
         @brewery = Brewery.find(params[:brewery_id])
       end
+    rescue
+      redirect_to root_path, alert: 'Brewery not found.'
     end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_beer
       @beer = @brewery.beers.find(params[:id])
+    rescue
+      redirect_to root_path, alert: 'Beer not found.'
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

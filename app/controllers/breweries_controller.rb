@@ -36,7 +36,7 @@ class BreweriesController < ApplicationController
 
     respond_to do |format|
       if @brewery.save
-        format.html { redirect_to [@user, @brewery], notice: 'Brewery was successfully created.' }
+        format.html { redirect_to user_breweries_path(@user), notice: 'Brewery was successfully created.' }
         format.json { render :show, status: :created, location: @brewery }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class BreweriesController < ApplicationController
   def update
     respond_to do |format|
       if @brewery.update(brewery_params)
-        format.html { redirect_to [@user, @brewery], notice: 'Brewery was successfully updated.' }
+        format.html { redirect_to user_brewery_path(@user, @brewery), notice: 'Brewery was successfully updated.' }
         format.json { render :show, status: :ok, location: @brewery }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class BreweriesController < ApplicationController
   def destroy
     @brewery.destroy
     respond_to do |format|
-      format.html { redirect_to [@user, @brewery], notice: 'Brewery was successfully destroyed.' }
+      format.html { redirect_to user_breweries_path(@user), notice: 'Brewery was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -83,6 +83,8 @@ class BreweriesController < ApplicationController
       else
         @brewery = Brewery.find(params[:id])
       end
+    rescue
+      redirect_to root_path, alert: 'Brewery not found.'
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
