@@ -1,0 +1,16 @@
+<% if @is_new %>
+  There is a new reservation made at the following brewery:
+<% else %>
+  There is an update to a reservation at the following brewery:
+<% end %>
+
+<%= Brewery.find(@reservation.brewery_id).brewery_name %>
+
+The visitor's details:
+
+Email: <%= @reservation.email %><br>
+Message: <%= @reservation.message %>
+
+On:
+
+<%= @reservation.request_date_time %>

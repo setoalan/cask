@@ -33,6 +33,7 @@ class BeersController < ApplicationController
 
     respond_to do |format|
       if @beer.save
+        Brewery.add_beer(@beer.brewery_id)
         format.html { redirect_to user_brewery_beers_path(@user, @brewery), notice: 'Beer was successfully created.' }
         format.json { render :show, status: :created, location: @beer }
       else
@@ -61,6 +62,7 @@ class BeersController < ApplicationController
   def destroy
     @beer.destroy
     respond_to do |format|
+      Brewery.subtract_beer(@beer.brewery_id)
       format.html { redirect_to user_brewery_beers_path(@user, @brewery), notice: 'Beer was successfully destroyed.' }
       format.json { head :no_content }
     end

@@ -11,7 +11,11 @@
       <th>Brewery</th>
       <% if @user %>
         <th>Edit</th>
-        <th>Delete</th>
+        <% if @brewery %>
+          <th>Mark as Confirmed</th>
+        <% else %>
+          <th>Delete Reservation</th>
+        <% end %>
       <% end %>
     </tr>
   </thead>
@@ -26,10 +30,10 @@
         <td><%= reservation.brewery_id %></td>
         <% if @brewery %>
           <td><%= link_to 'Edit', edit_user_brewery_reservation_path(@user, @brewery, reservation) %></td>
-          <td><%= link_to 'Destroy', [@user, @brewery, reservation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Mark as Confirmed', [@user, @brewery, reservation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% else %>
           <td><%= link_to 'Edit', edit_user_reservation_path(@user, reservation) %></td>
-          <td><%= link_to 'Destroy', [@user, reservation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Delete Reservation', [@user, reservation], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>

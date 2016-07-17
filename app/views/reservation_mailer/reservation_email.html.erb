@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      <% if @is_new %>
+        There is a new reservation made at the following brewery:
+      <% else %>
+        There is an update to a reservation at the following brewery:
+      <% end %>
+    </p>
+    <p>
+      <%= Brewery.find(@reservation.brewery_id).brewery_name %>
+    </p>
+    <p>
+      The visitor's details:
+    </p>
+    <p>
+      Email: <%= @reservation.email %><br>
+      Message: <%= @reservation.message %>
+    </p>
+    <p>
+      On:
+    </p>
+    <p>
+      <%= @reservation.request_date_time %>
+    </p>
+  </body>
+</html>
