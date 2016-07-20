@@ -78,7 +78,7 @@ class BreweriesController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_brewery
-      if params[:user_id]
+      if @user
         @brewery = @user.breweries.find(params[:id])
       else
         @brewery = Brewery.find(params[:id])

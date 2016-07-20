@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :breweries
-  has_many :reservations
+  has_many :breweries, dependent: :destroy
+  has_many :reservations, dependent: :destroy
 end
