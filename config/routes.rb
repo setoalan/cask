@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :breweries do
     resources :beers
     resources :reservations
-    put :favorite, on: :member
+    put :star, on: :member
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

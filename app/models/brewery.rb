@@ -6,7 +6,7 @@ class Brewery < ActiveRecord::Base
   has_many :beers, dependent: :destroy
   has_many :reservations, dependent: :destroy
   has_many :stars, dependent: :destroy
-  has_many :favorited_by, through: :stars, source: :user
+  has_many :starred_by, through: :stars, source: :user
 
   def self.add_beer(brewery_id)
     @brewery = Brewery.find(brewery_id)

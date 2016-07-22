@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
   has_many :breweries, dependent: :destroy
   has_many :reservations, dependent: :destroy
   has_many :stars, dependent: :destroy
-  has_many :favorites, through: :stars, source: :brewery
+  has_many :starred_restaurants, through: :stars, source: :brewery
 end

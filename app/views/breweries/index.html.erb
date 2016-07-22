@@ -36,8 +36,8 @@
           <td><%= link_to 'Display Beers', brewery_beers_path(brewery) %></td>
           <td><%= link_to 'Make Reservations', new_brewery_reservation_path(brewery) %></td>
           <td>
-            <%= link_to "Favorite", favorite_brewery_path(brewery, brewery_id: brewery.id, type: "favorite"), method: :put %> /
-            <%= link_to "Unfavorite", favorite_brewery_path(brewery, brewery_id: brewery.id, type: "unfavorite"), method: :put %>
+            <%= link_to "Favorite", star_brewery_path(brewery, brewery_id: brewery.id, type: "favorite"), method: :put unless Star.where(user_id: current_user.id).where(brewery_id: brewery.id).exists? %>
+            <%= link_to "Unfavorite", star_brewery_path(brewery, brewery_id: brewery.id, type: "unfavorite"), method: :put if Star.where(user_id: current_user.id).where(brewery_id: brewery.id).exists? %>
           </td>
         <% end %>
     <% end %>
