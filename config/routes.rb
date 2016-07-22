@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :stars
   devise_for :users
   resources :users do
     resources :breweries do
@@ -7,10 +6,12 @@ Rails.application.routes.draw do
       resources :reservations
     end
     resources :reservations
+    resources :stars
   end
   resources :breweries do
     resources :beers
     resources :reservations
+    put :favorite, on: :member
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

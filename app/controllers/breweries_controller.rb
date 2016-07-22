@@ -69,6 +69,18 @@ class BreweriesController < ApplicationController
     end
   end
 
+  def favorite
+    brewery = Brewery.find(params[:brewery_id])
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorites << brewery
+      redirect_to :back, notice: 'You favorited ' + brewery.brewery_name
+    else
+      current_user.favorites.delete(brewery)
+      redirect_to :back, notice: 'Unfavorited ' + brewery.brewery_name
+    end
+  end
+
   private
     def set_user
       if params[:user_id]
