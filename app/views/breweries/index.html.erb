@@ -8,13 +8,15 @@
       <th>Brewery country</th>
       <th>Brewery location</th>
       <th>Beer count</th>
+      <th>Favorite Count</th>
       <th>Owner</th>
       <th>Display Beers</th>
       <th>Reservations</th>
-      <th>Favorite / Unfavorite</th>
       <% if @user %>
         <th>Edit</th>
         <th>Destroy</th>
+      <% else %>
+        <th>Favorite / Unfavorite</th>
       <% end %>
     </tr>
   </thead>
@@ -26,6 +28,7 @@
         <td><%= brewery.brewery_country %></td>
         <td><%= brewery.brewery_location %></td>
         <td><%= brewery.beer_count %></td>
+        <td><%= Brewery.find(brewery).stars.all.count %></td>
         <td><%= brewery.user_id %></td>
         <% if @user %>
           <td><%= link_to 'Display Beers', user_brewery_beers_path(@user, brewery) %></td>

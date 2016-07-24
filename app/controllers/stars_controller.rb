@@ -1,10 +1,14 @@
 class StarsController < ApplicationController
+  include UsersHelper
+  before_action :authenticate_user!
+  before_action :set_user
+  before_action :validate_user
   before_action :set_star, only: [:show, :edit, :update, :destroy]
 
   # GET /stars
   # GET /stars.json
   def index
-    @stars = Star.all
+    @stars = @user.stars.all
   end
 
   # GET /stars/1
@@ -56,12 +60,18 @@ class StarsController < ApplicationController
   def destroy
     @star.destroy
     respond_to do |format|
-      format.html { redirect_to stars_url, notice: 'Star was successfully destroyed.' }
+      format.html { redirect_to user_stars_url, notice: 'Star was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_user
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_star
       @star = Star.find(params[:id])
