@@ -8,12 +8,15 @@
       <th>Brewery country</th>
       <th>Brewery location</th>
       <th>Beer count</th>
+      <th>Favorite Count</th>
       <th>Owner</th>
       <th>Display Beers</th>
       <th>Reservations</th>
       <% if @user %>
         <th>Edit</th>
         <th>Destroy</th>
+      <% else %>
+        <th>Favorite / Unfavorite</th>
       <% end %>
     </tr>
   </thead>
@@ -25,6 +28,7 @@
         <td><%= brewery.brewery_country %></td>
         <td><%= brewery.brewery_location %></td>
         <td><%= brewery.beer_count %></td>
+        <td><%= Brewery.find(brewery).stars.all.count %></td>
         <td><%= brewery.user_id %></td>
         <% if @user %>
           <td><%= link_to 'Display Beers', user_brewery_beers_path(@user, brewery) %></td>
@@ -34,6 +38,10 @@
         <% else %>
           <td><%= link_to 'Display Beers', brewery_beers_path(brewery) %></td>
           <td><%= link_to 'Make Reservations', new_brewery_reservation_path(brewery) %></td>
+          <td>
+            <%= link_to "Favorite", star_brewery_path(brewery, brewery_id: brewery.id, type: "favorite"), method: :put unless Star.where(user_id: current_user.id).where(brewery_id: brewery.id).exists? %>
+            <%= link_to "Unfavorite", star_brewery_path(brewery, brewery_id: brewery.id, type: "unfavorite"), method: :put if Star.where(user_id: current_user.id).where(brewery_id: brewery.id).exists? %>
+          </td>
         <% end %>
     <% end %>
   </tbody>

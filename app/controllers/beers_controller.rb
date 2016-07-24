@@ -76,7 +76,7 @@ class BeersController < ApplicationController
     end
 
     def set_brewery
-      if params[:user_id]
+      if @user
         @brewery = @user.breweries.find(params[:brewery_id])
       else
         @brewery = Brewery.find(params[:brewery_id])

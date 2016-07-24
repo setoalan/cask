@@ -69,6 +69,18 @@ class BreweriesController < ApplicationController
     end
   end
 
+  def star
+    brewery = Brewery.find(params[:brewery_id])
+    type = params[:type]
+    if type == "favorite"
+      current_user.starred_restaurants << brewery
+      redirect_to :back, notice: 'You favorited ' + brewery.brewery_name
+    else
+      current_user.starred_restaurants.delete(brewery)
+      redirect_to :back, notice: 'Unfavorited ' + brewery.brewery_name
+    end
+  end
+
   private
     def set_user
       if params[:user_id]
@@ -78,7 +90,7 @@ class BreweriesController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_brewery
-      if params[:user_id]
+      if @user
         @brewery = @user.breweries.find(params[:id])
       else
         @brewery = Brewery.find(params[:id])

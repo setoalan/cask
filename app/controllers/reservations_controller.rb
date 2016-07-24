@@ -84,9 +84,10 @@ class ReservationsController < ApplicationController
     end
 
     def set_brewery
-      if params[:user_id] && params[:brewery_id]
+      if @user && @brewery
         @brewery = @user.breweries.find(params[:brewery_id])
-      elsif params[:brewery_id]
+        throw
+      elsif @brewery
         @brewery = Brewery.find(params[:brewery_id])
       end
     rescue
@@ -95,10 +96,10 @@ class ReservationsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_reservation
-      if params[:user_id] && params[:brewery_id]
-        @reservation = @brewery.reservations.find(params[:id])
-      else
+      if @user
         @reservation = @user.reservations.find(params[:id])
+      elsif @brewery
+        @reservation = @brewery.reservations.find(params[:id])
       end
     rescue
       redirect_to root_path, alert: 'Reservation not found.'

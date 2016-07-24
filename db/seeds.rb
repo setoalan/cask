@@ -27,9 +27,16 @@ Beer.create(beer_name: 'beer3', beer_abv: 100, beer_ibu: 100, beer_description: 
 Beer.create(beer_name: 'beer4', beer_abv: 100, beer_ibu: 100, beer_description: 'beer4 description', beer_style: 'Ale', brewery_id: 4)
 Beer.create(beer_name: 'beer5', beer_abv: 100, beer_ibu: 100, beer_description: 'beer5 description', beer_style: 'Ale', brewery_id: 5)
 
-# Gernerate Reservation
+# Gernerate Reservations
 Reservation.create(email: 'admin@cask.com', request_date_time: Time.now, message: 'admin reservation', user_id: '1', brewery_id: '2')
 Reservation.create(email: 'user2@cask.com', request_date_time: Time.now, message: 'user2 reservation', user_id: '2', brewery_id: '3')
 Reservation.create(email: 'user3@cask.com', request_date_time: Time.now, message: 'user3 reservation', user_id: '3', brewery_id: '4')
 Reservation.create(email: 'user4@cask.com', request_date_time: Time.now, message: 'user4 reservation', user_id: '4', brewery_id: '5')
 Reservation.create(email: 'user5@cask.com', request_date_time: Time.now, message: 'user5 reservation', user_id: '5', brewery_id: '1')
+
+# Gernerate Stars
+Star.create(user_id: 1, brewery_id: 2)
+Star.create(user_id: 2, brewery_id: 3)
+Star.create(user_id: 3, brewery_id: 4)
+Star.create(user_id: 4, brewery_id: 5)
+Star.create(user_id: 5, brewery_id: 1)
