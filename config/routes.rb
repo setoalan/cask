@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'categories/index'
+
+  get 'categories/show'
+
   devise_for :users
   resources :users do
     resources :breweries do
@@ -13,6 +17,8 @@ Rails.application.routes.draw do
     resources :reservations
     put :star, on: :member
   end
+  resources :categories
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

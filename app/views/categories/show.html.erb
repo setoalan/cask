@@ -1,0 +1,14 @@
+<% title @category.name %>
+<p>
+  <strong>Category name:</strong>
+  <%= @category.name %>
+</p>
+
+<p>
+  <strong>Breweries:</strong>
+  <% @category.breweries.each do |brewery| %>
+    [<%= link_to brewery.brewery_name, brewery_path(brewery) %>]
+  <% end %>
+</p>
+
+<%= link_to 'Back', categories_path, class: 'btn btn-link' %>

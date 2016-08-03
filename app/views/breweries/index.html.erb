@@ -47,5 +47,11 @@
   </tbody>
 </table>
 
+<% unless @user %>
+  <% Category.all.each do |category| %>
+    [<%= link_to category.name, category %>]
+  <% end %>
+<% end %>
+
 <br>
 <%= link_to 'New Brewery', new_user_brewery_path(@user), class: 'btn btn-link' if @user %>
